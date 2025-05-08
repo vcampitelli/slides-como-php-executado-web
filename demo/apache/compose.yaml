@@ -1,0 +1,8 @@
+services:
+  apache:
+    image: php:8.4-apache
+    volumes:
+      - ../app/:/var/www/html/
+      - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - "8000:80"

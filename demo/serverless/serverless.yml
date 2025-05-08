@@ -1,0 +1,36 @@
+service: app
+
+# Set your team ID if you are using Bref Cloud
+#bref:
+#    team: my-team-id
+
+provider:
+    name: aws
+    profile: bref
+    region: sa-east-1
+
+plugins:
+  - ./vendor/bref/bref
+  - serverless-lift
+
+functions:
+    api:
+        handler: public/index.php
+        description: ''
+        runtime: php-83-fpm
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        events:
+            -   httpApi: '*'
+
+# static files
+constructs:
+  website:
+    type: server-side-website
+    assets:
+      '/assets/*': public/assets
+
+# Exclude files from deployment
+package:
+    patterns:
+        - '!node_modules/**'
+        - '!.gitignore'

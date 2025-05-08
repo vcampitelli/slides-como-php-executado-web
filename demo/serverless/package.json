@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "serverless": "^3.40.0"
+  },
+  "devDependencies": {
+    "serverless-lift": "^1.31.0"
+  },
+  "scripts": {
+    "predeploy": "cp -r ../app/public . && cp -r ../app/src .",
+    "deploy": "serverless deploy",
+    "postdeploy": "rm -rf public/ src/"
+  }
+}
