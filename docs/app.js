@@ -21,7 +21,7 @@ document.querySelectorAll('img.insert-svg').forEach(($img) => {
  */
 Reveal.initialize({
     hash: true,
-    transitionSpeed: 'fast',
+    // transitionSpeed: 'fast',
     mouseWheel: false,
     overview: false,
     history: true,
