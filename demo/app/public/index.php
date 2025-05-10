@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/Response.php';
-require_once __DIR__ . '/../src/JsonResponse.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$container = new App\Container();
+$container->register(App\SomeDependency::class, fn() => new App\SomeDependency());
+
+$router = new App\Router();
 
 $url = '/' . trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 $response = match ($url) {
-    '/' => new Response(body: 'Hello, world'),
-    '/json' => new JsonResponse(body: ['status' => true]),
-    default => new Response(status: 404),
+    '/' => new App\Response\Response(body: 'Hello, world'),
+    '/json' => new App\Response\JsonResponse(body: ['status' => true]),
+    default => new App\Response\Response(status: 404),
 };
 
 if (!empty($_SERVER['SWOOLE'])) {

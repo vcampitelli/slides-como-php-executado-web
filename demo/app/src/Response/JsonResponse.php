@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+namespace App\Response;
 readonly class JsonResponse extends \Response
 {
     public function __construct(
