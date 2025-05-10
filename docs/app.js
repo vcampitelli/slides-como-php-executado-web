@@ -25,6 +25,6 @@ Reveal.initialize({
     mouseWheel: false,
     overview: false,
     history: true,
-    plugins: [RevealHighlight, RevealNotes],
+    plugins: [RevealNotes],
     slideNumber: 'c/t',
 });

@@ -21,13 +21,14 @@
 
 /* Tema */
 .reveal-viewport {
-  box-shadow: 0 0 0 20px var(--php-dark-blue-color) inset;
-  background: var(--r-background-color) url(img/bg-texture-00.svg) 0 0 repeat;
+  background: var(--r-background-color);
+  background-image: linear-gradient(90deg, var(--php-dark-blue-color), var(--php-dark-magenta-color));
 }
 .slide {
   margin: 20px;
   width: calc(100% - 40px);
   height: calc(100% - 40px);
+  background: var(--r-background-color) url(img/bg-texture-00.svg) 0 0 repeat;
 }
 .reveal .slides {
   text-align: left;
@@ -35,10 +36,6 @@
 }
 
 /* Componentes do tema */
-.reveal .controls {
-  --r-controls-spacing: 10px;
-  bottom: 30px;
-}
 .reveal .slide-number {
   right: auto;
   left: 10px;
@@ -148,6 +145,15 @@ header > h2 {
 }
 
 /* Código */
+.reveal pre {
+  margin: 1em 0 0;
+}
+pre > code[data-trim] {
+  white-space: normal;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--r-main-color);
+  padding: 1em;
+}
 code:not(.hljs),
 kbd {
   font-family: var(--r-code-font);
@@ -155,11 +161,12 @@ kbd {
   color: var(--php-medium-magenta-color);
   user-select: all;
 }
-.shell.hljs.language-shell {
+pre > code.shell {
   user-select: all;
 }
-.hljs-meta.prompt_ {
+pre > code.shell > span {
   user-select: none;
+  color: var(--php-medium-magenta-color);
 }
 
 /* Referências */
