@@ -11,11 +11,26 @@ $router = new App\Router();
 
 $url = '/' . trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-$response = match ($url) {
-    '/' => new App\Response\Response(body: 'Hello, world'),
-    '/json' => new App\Response\JsonResponse(body: ['status' => true]),
-    default => new App\Response\Response(status: 404),
+$handler = match ($url) {
+    '/' => fn() => new App\Response\Response(body: 'Hello, world'),
+    '/json' => fn() => new App\Response\JsonResponse(body: ['status' => true]),
+    '/singleton' => fn() => new App\Response\JsonResponse(body: ['singleton' => \App\Singleton::getInstance()->date]),
+    default => fn() => new App\Response\Response(status: 404),
 };
+
+try {
+    $response = $handler();
+} catch (\Throwable $t) {
+    $response = new App\Response\JsonResponse(
+        status: 500,
+        body: [
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => $e->getTrace(),
+        ],
+    );
+}
 
 if (!empty($_SERVER['SWOOLE'])) {
     return $response;
