@@ -4,30 +4,22 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$container = new App\Container();
-$container->register(App\SomeDependency::class, fn() => new App\SomeDependency());
-
-$router = new App\Router();
-
 $url = '/' . trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-$handler = match ($url) {
-    '/' => fn() => new App\Response\Response(body: 'Hello, world'),
-    '/json' => fn() => new App\Response\JsonResponse(body: ['status' => true]),
-    '/singleton' => fn() => new App\Response\JsonResponse(body: ['singleton' => \App\Singleton::getInstance()->date]),
-    default => fn() => new App\Response\Response(status: 404),
-};
-
 try {
-    $response = $handler();
+    $response = match ($url) {
+        '/' => new App\Response\Response(body: 'Hello, World!'),
+        '/singleton' => new App\Response\JsonResponse(body: ['singleton' => App\Singleton::getInstance()->date]),
+        default => new App\Response\Response(status: 404),
+    };
 } catch (\Throwable $t) {
     $response = new App\Response\JsonResponse(
         status: 500,
         body: [
-            'error' => $e->getMessage(),
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
-            'trace' => $e->getTrace(),
+            'error' => $t->getMessage(),
+            'file' => $t->getFile(),
+            'line' => $t->getLine(),
+            'trace' => $t->getTrace(),
         ],
     );
 }
