@@ -27,7 +27,7 @@
         <div class="reveal">
             <div class="slides">
                 <section id="first-slide">
-                    <h1>
+                    <h1 class="title">
                         Como o <span>PHP</span> é<br>executado na Web?
                     </h1>
                     <h2>Vinícius Campitelli</h2>
@@ -35,13 +35,11 @@
 
                 <section> <!-- Sobre -->
                     <section>
-                        <h1>Sobre</h1>
+                        <h1 class="title">Sobre</h1>
                     </section>
                     <section data-auto-animate>
-                        <header>
-                            <h1>Sobre</h1>
-                            <h2>Sobre mim</h2>
-                        </header>
+                        <h1>Sobre</h1>
+                        <h2>Sobre mim</h2>
                         <div id="about-me">
                             <div class="text-center">
                                 <figure id="profile-pic">
@@ -162,10 +160,8 @@
                         <h1 class="title">Preparação</h1>
                     </section>
                     <section>
-                        <header>
-                            <h1>Preparação</h1>
-                            <h2>Slides</h2>
-                        </header>
+                        <h1>Preparação</h1>
+                        <h2>Slides</h2>
                         <div class="d-flex justify-start items-center">
                             <div style="flex-shrink: 0">
                                 <a href="https://github.com/vcampitelli/slides-como-php-executado-web" target="_blank"
@@ -183,10 +179,8 @@
                         </div>
                     </section>
                     <section id="preparacao-maos-na-massa">
-                        <header>
-                            <h1>Preparação</h1>
-                            <h2>Mãos na massa</h2>
-                        </header>
+                        <h1>Preparação</h1>
+                        <h2>Mãos na massa</h2>
                         <ol>
                             <li>
                                 Certifique-se que você tenha o
@@ -202,15 +196,12 @@
                             <li>
                                 Clone o repositório
                                 <a href="https://github.com/vcampitelli/slides-como-php-executado-web" target="_blank"
-                                   rel="noopener">vcampitelli/slides-como-php-executado-web</a> do GitHub
-                                <pre><code class="shell" data-trim>
+                                   rel="noopener"><code>vcampitelli/slides-como-php-executado-web</code></a> do GitHub
+                                <pre><code class="hljs shell" data-trim>
                                     <span>$ </span> git clone --recursive git@github.com/vcampitelli/slides-como-php-executado-web.git
                                 </code></pre>
                             </li>
                         </ol>
-                        <div class="text-right fs-small opacity-50">
-                            <a href="#maos-na-massa">Ir para o slide <em>"Mãos na massa"</em> &#8594;</a>
-                        </div>
                     </section>
                 </section> <!-- Preparação -->
 
@@ -259,13 +250,23 @@
                         </p>
                     </section>
                     <section>
-                        <header>
-                            <h1>Apache</h1>
-                            <h2>Mãos na massa</h2>
-                        </header>
-                        <p>
-                            Vamos ver o projeto em <code>demo/apache</code>
-                        </p>
+                        <h1>Apache</h1>
+                        <h2>Mãos na massa</h2>
+                        <ul>
+                            <li>
+                                Entre na pasta <code>demo/apache</code>
+                            </li>
+                            <li>
+                                Inicialize os <em>containers</em> com
+                                <pre><code class="hljs shell" data-trim>
+                                    <span>$ </span> docker compose up -d
+                                </code></pre>
+                            </li>
+                            <li>
+                                Efetue requisições para <a href="http://localhost:8000" target="_blank"
+                                                         rel="noopener">localhost:8000</a>
+                            </li>
+                        </ul>
                     </section>
                 </section> <!-- Apache -->
 
@@ -292,13 +293,23 @@
                         <img src="img/nginx-php-fpm.svg" alt="Funcionamento do Nginx + PHP-FPM" class="insert-svg">
                     </section>
                     <section>
-                        <header>
-                            <h1>Nginx e PHP-FPM</h1>
-                            <h2>Mãos na massa</h2>
-                        </header>
-                        <p>
-                            Vamos ver o projeto em <code>demo/nginx-fpm</code>
-                        </p>
+                        <h1>Nginx e PHP-FPM</h1>
+                        <h2>Mãos na massa</h2>
+                        <ul>
+                            <li>
+                                Entre na pasta <code>demo/nginx-fpm</code>
+                            </li>
+                            <li>
+                                Inicialize os <em>containers</em> com
+                                <pre><code class="hljs shell" data-trim>
+                                    <span>$ </span> docker compose up -d
+                                </code></pre>
+                            </li>
+                            <li>
+                                Efetue requisições para <a href="http://localhost:8001" target="_blank"
+                                                          rel="noopener">localhost:8001</a>
+                            </li>
+                        </ul>
                     </section>
                 </section> <!-- Nginx e PHP-FPM -->
 
@@ -323,20 +334,16 @@
                         </p>
                     </section>
                     <section>
-                        <header>
-                            <h1>Serverless</h1>
-                            <h2>Bref</h2>
-                        </header>
+                        <h1>Serverless</h1>
+                        <h2>Bref</h2>
                         <p class="fw-bold">Como o Bref funciona?</p>
                         <img src="img/bref-fpm.png" alt="Como o Bref funciona?">
                         <a href="https://bref.sh/docs/runtimes/fpm-runtime" target="_blank" rel="noopener"
                            class="reference">PHP-FPM runtime for AWS Lambda - Bref</a>
                     </section>
                     <section>
-                        <header>
-                            <h1>Serverless</h1>
-                            <h2>Mãos na massa</h2>
-                        </header>
+                        <h1>Serverless</h1>
+                        <h2>Mãos na massa</h2>
                         <p>
                             Vamos ver o projeto em <code>demo/serverless</code>
                         </p>
@@ -362,25 +369,33 @@
                         <img src="img/swoole.svg" alt="Funcionamento do Swoole" class="insert-svg">
                     </section>
                     <section>
-                        <header>
-                            <h1>Swoole</h1>
-                            <h2>Mãos na massa</h2>
-                        </header>
-                        <p>
-                            Vamos ver o projeto em <code>demo/swoole</code>
-                        </p>
+                        <h1>Swoole</h1>
+                        <h2>Mãos na massa</h2>
+                        <ul>
+                            <li>
+                                Entre na pasta <code>demo/swoole</code>
+                            </li>
+                            <li>
+                                Inicialize os <em>containers</em> com
+                                <pre><code class="hljs shell" data-trim>
+                                    <span>$ </span> docker compose up -d
+                                </code></pre>
+                            </li>
+                            <li>
+                                Efetue requisições para <a href="http://localhost:8002" target="_blank"
+                                                          rel="noopener">localhost:8002</a>
+                            </li>
+                        </ul>
                     </section>
                 </section> <!-- Swoole -->
 
                 <section> <!-- Outros modelos -->
                     <section>
-                        <h1>Outros modelos</h1>
+                        <h1 class="title">Outros modelos</h1>
                     </section>
                     <section data-auto-animate>
-                        <header>
-                            <h1>Outros modelos</h1>
-                            <h2>RoadRunner</h2>
-                        </header>
+                        <h1>Outros modelos</h1>
+                        <h2>RoadRunner</h2>
                         <blockquote>
                             RoadRunner is a high-performance PHP application server, load-balancer, and process manager
                             written in Golang
@@ -389,10 +404,8 @@
                            class="reference">RoadRunner</a>
                     </section>
                     <section data-auto-animate>
-                        <header>
-                            <h1>Outros modelos</h1>
-                            <h2>RoadRunner</h2>
-                        </header>
+                        <h1>Outros modelos</h1>
+                        <h2>RoadRunner</h2>
                         <p>
                             Projeto que começou em 2017 e teve sua primeira versão lançada em janeiro de 2018, tornou-se
                             muito conhecido por ser o primeiro modelo de execução em PHP a permitir a criação de
@@ -406,19 +419,15 @@
                            class="reference">gRPC | RoadRunner</a>
                     </section>
                     <section data-auto-animate>
-                        <header>
-                            <h1>Outros modelos</h1>
-                            <h2>RoadRunner</h2>
-                        </header>
+                        <h1>Outros modelos</h1>
+                        <h2>RoadRunner</h2>
                         <img src="img/roadrunner.png" alt="What is RoadRunner?">
                         <a href="https://docs.roadrunner.dev/docs" target="_blank" rel="noopener"
                            class="reference">What is RoadRunner?</a>
                     </section>
                     <section data-auto-animate data-auto-animate-restart>
-                        <header>
-                            <h1>Outros modelos</h1>
-                            <h2>FrankenPHP</h2>
-                        </header>
+                        <h1>Outros modelos</h1>
+                        <h2>FrankenPHP</h2>
                         <blockquote>
                             FrankenPHP is a modern application server for PHP built on top of the Caddy web server.
                         </blockquote>
@@ -426,10 +435,8 @@
                            class="reference">FrankenPHP</a>
                     </section>
                     <section data-auto-animate>
-                        <header>
-                            <h1>Outros modelos</h1>
-                            <h2>FrankenPHP</h2>
-                        </header>
+                        <h1>Outros modelos</h1>
+                        <h2>FrankenPHP</h2>
                         <p>
                             Projeto começou em 2021, mas teve sua primeira versão oficial em 2023, causando um certo
                             rebuliço na comunidade devido à sua alta performance

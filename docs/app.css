@@ -41,6 +41,9 @@
   left: 10px;
   bottom: 25px;
 }
+.reveal .controls {
+  --r-link-color: var(--php-dark-magenta-color);
+}
 
 /* Primeiro slide */
 #first-slide > h1 {
@@ -64,12 +67,13 @@
 }
 
 /* Cabeçalhos */
-header > h1 {
+h1:not(.title) {
   --r-heading1-size: 1.2em;
   --r-heading-font-weight: 500;
+  --r-heading-margin: 0;
   opacity: 0.25;
 }
-header > h1:after {
+h1:not(.title):after {
   font-size: 0.6em;
   content: "⟫";
   margin: 0 0.5em;
@@ -77,13 +81,9 @@ header > h1:after {
   line-height: 2;
   font-weight: 900;
 }
-header > h1,
-header > h2 {
-  --r-heading-margin: 0;
-  --r-heading2-size: 1.6em;
-}
-.reveal h1 + h2 {
+h1 + h2 {
   --r-heading-font-weight: 700;
+  --r-heading2-size: 1.6em;
 }
 
 /* Sobre mim */
@@ -157,7 +157,9 @@ pre > code[data-trim] {
 code:not(.hljs),
 kbd {
   font-family: var(--r-code-font);
-  letter-spacing: -0.088em;
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: -0.1em;
   color: var(--php-medium-magenta-color);
   user-select: all;
 }
@@ -226,7 +228,9 @@ a.reference:after {
 }
 
 /* Listas */
+.reveal ul,
 .reveal ol {
+  display: block;
   margin: 0.5em 0 0.5em 1em;
 }
 li + li {
@@ -247,12 +251,6 @@ li + li {
 }
 .text-muted {
   color: var(--php-dark-blue-color);
-}
-.fs-small {
-  font-size: 0.8em;
-}
-.opacity-50 {
-  opacity: 0.5;
 }
 
 /* SVG */
