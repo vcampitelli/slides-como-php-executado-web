@@ -11,12 +11,14 @@
   --r-main-font-size: 28px;
   --r-main-font: "Fira Sans", sans-serif;
   --php-dark-grey-color: #333;
+  --php-medium-grey-color: #666;
   --php-dark-blue-color: #4F5B93;
   --php-medium-blue-color: #7A86B8;
   --php-light-blue-color: #E2E4EF;
   --php-dark-magenta-color: #793862;
   --php-medium-magenta-color: #AE508D;
   --php-light-magenta-color: #CF82B1;
+  --border-radius: 5px;
 }
 
 /* Tema */
@@ -92,6 +94,9 @@ h1 + h2 {
   grid-template-columns: auto 1fr;
   column-gap: 3rem;
 }
+#about-me > .text-center {
+  margin-top: 0.25em;
+}
 #about-me > ul {
   list-style-type: circle;
 }
@@ -147,12 +152,14 @@ h1 + h2 {
 /* Código */
 .reveal pre {
   margin: 1em 0 0;
+  width: 100%;
 }
 pre > code[data-trim] {
   white-space: normal;
   background: rgba(0, 0, 0, 0.25);
   color: var(--r-main-color);
   padding: 1em;
+  letter-spacing: var(--r-heading-letter-spacing);
 }
 code:not(.hljs),
 kbd {
@@ -169,6 +176,9 @@ pre > code.shell {
 pre > code.shell > span {
   user-select: none;
   color: var(--php-medium-magenta-color);
+}
+code, kbd {
+  border-radius: var(--border-radius);
 }
 
 /* Referências */
@@ -212,6 +222,14 @@ a.reference:after {
 .reveal a {
   transition: color 0.25s ease;
 }
+a > code:not(.hljs),
+a > kbd {
+  color: var(--r-link-color);
+}
+a:is(:hover, :focus) > code:not(.hljs),
+a:is(:hover, :focus) > kbd {
+  color: var(--r-link-color-hover);
+}
 .fill {
   transition: fill 0.25s ease;
 }
@@ -231,10 +249,21 @@ a.reference:after {
 .reveal ul,
 .reveal ol {
   display: block;
-  margin: 0.5em 0 0.5em 1em;
 }
-li + li {
+.reveal li > ul,
+.reveal li + li {
   margin-top: 0.25em;
+}
+
+/* Tabelas */
+.reveal table th,
+.reveal table td {
+  border-color: var(--php-medium-grey-color);
+}
+.reveal li > table {
+  margin-top: 0.5em;
+  margin-left: 0;
+  font-size: 0.9em;
 }
 
 /* Tipografia */
@@ -250,7 +279,13 @@ li + li {
   text-align: right;
 }
 .text-muted {
-  color: var(--php-dark-blue-color);
+  color: var(--php-medium-grey-color);
+}
+.fs-small {
+  font-size: 0.8em;
+}
+.fs-italic {
+  font-style: italic;
 }
 
 /* SVG */
@@ -279,4 +314,27 @@ svg {
 }
 #qrcode-workshops-text {
   font-size: 1.3em;
+}
+
+/* Alert */
+.alert {
+  margin-top: 2em;
+  padding: 0.6em 0.75em;
+  font-size: 0.65em;
+  background: var(--php-medium-blue-color);
+  border-radius: var(--border-radius);
+  color: var(--php-dark-grey-color);
+  letter-spacing: -0.03em;
+}
+.alert > code {
+  white-space: nowrap;
+  color: var(--php-dark-magenta-color);
+  letter-spacing: -0.04em;
+}
+.alert > a {
+  white-space: nowrap;
+  color: var(--php-dark-magenta-color);
+}
+.alert > a:is(:hover, :focus) {
+  color: var(--php-medium-magenta-color);
 }

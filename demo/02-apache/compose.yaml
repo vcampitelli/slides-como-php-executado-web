@@ -5,4 +5,4 @@ services:
       - ../app/:/var/www/html/
       - ./apache.conf:/etc/apache2/sites-available/000-default.conf
     ports:
-      - "8000:80"
+      - "8002:80"

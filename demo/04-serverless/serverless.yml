@@ -1,9 +1,5 @@
 service: app
 
-# Set your team ID if you are using Bref Cloud
-#bref:
-#    team: my-team-id
-
 provider:
     name: aws
     profile: bref
@@ -18,18 +14,18 @@ functions:
         handler: public/index.php
         description: ''
         runtime: php-83-fpm
-        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        timeout: 28 # segundos (API Gateway tem um timeout padrão de 29 segundos)
         events:
             -   httpApi: '*'
 
-# static files
+# arquivos estáticos
 constructs:
   website:
     type: server-side-website
     assets:
       '/assets/*': public/assets
 
-# Exclude files from deployment
+# ignorando arquivos ao fazer deploy
 package:
     patterns:
         - '!node_modules/**'

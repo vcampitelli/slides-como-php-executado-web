@@ -160,8 +160,7 @@
                         <h1 class="title">Preparação</h1>
                     </section>
                     <section>
-                        <h1>Preparação</h1>
-                        <h2>Slides</h2>
+                        <h1 class="title">Preparação</h1>
                         <div class="d-flex justify-start items-center">
                             <div style="flex-shrink: 0">
                                 <a href="https://github.com/vcampitelli/slides-como-php-executado-web" target="_blank"
@@ -178,9 +177,8 @@
                             </div>
                         </div>
                     </section>
-                    <section id="preparacao-maos-na-massa">
-                        <h1>Preparação</h1>
-                        <h2>Mãos na massa</h2>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h1 class="title">Preparação</h1>
                         <ol>
                             <li>
                                 Certifique-se que você tenha o
@@ -200,6 +198,51 @@
                                 <pre><code class="hljs shell" data-trim>
                                     <span>$ </span> git clone --recursive git@github.com/vcampitelli/slides-como-php-executado-web.git
                                 </code></pre>
+                            </li>
+                            <li>
+                                Acesse os <em>slides</em> localmente em <code>docs/index.html</code>
+                            </li>
+                        </ol>
+                        <p class="text-right text-muted fs-small fs-italic">Continua... &raquo;</p>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="title">Preparação</h1>
+                        <ol start="4">
+                            <li>
+                                Na pasta <code>demo</code>, temos 5 pastas com aplicações de demonstração, cada uma
+                                com uma configuração de <a href="https://docs.docker.com/compose" target="_blank"
+                                                           rel="noopener">Docker Compose</a> e rodando em uma porta
+                                diferente:
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pasta</th>
+                                            <th>Porta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><kbd>01-built-in</kbd></td>
+                                            <td>8001</td>
+                                        </tr>
+                                        <tr>
+                                            <td><kbd>02-apache</kbd></td>
+                                            <td>8002</td>
+                                        </tr>
+                                        <tr>
+                                            <td><kbd>03-nginx-fpm</kbd></td>
+                                            <td>8003</td>
+                                        </tr>
+                                        <tr>
+                                            <td><kbd>04-serverless</kbd></td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td><kbd>05-swoole</kbd></td>
+                                            <td>8005</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </li>
                         </ol>
                     </section>
@@ -231,12 +274,54 @@
                             <a href="https://php.watch/articles/jit-in-depth" target="_blank" rel="noopener">
                                 PHP JIT in Depth - PHP Watch
                             </a>
-                            <a href="https://www.zend.com/blog/exploring-new-php-jit-compiler" target="_blank" rel="noopener">
+                            <a href="https://www.zend.com/blog/exploring-new-php-jit-compiler" target="_blank"
+                               rel="noopener">
                                 Exploring the New PHP JIT Compiler - Zend
                             </a>
                         </div>
                     </section>
                 </section> <!-- Introdução -->
+
+                <section> <!-- Servidor embutido -->
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h1 class="title">Servidor embutido</h1>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="title">Servidor embutido</h1>
+                        <p>
+                            O PHP possui um servidor embutido <b>desde a versão 5.4</b> (de 2012), que pode ser
+                            utilizado para desenvolvimento e testes rápidos através do comando abaixo:
+                        </p>
+                        <pre><code class="hljs shell" data-trim>
+                            <span>$ </span> php -S localhost:8001 -t public/
+                        </code></pre>
+                        <a href="https://www.php.net/manual/en/features.commandline.webserver.php" target="_blank"
+                           rel="noopener" class="reference">PHP: Built-in web server</a>
+                    </section>
+                    <section>
+                        <h1>Servidor embutido</h1>
+                        <h2>Mãos na massa</h2>
+                        <ul>
+                            <li>
+                                Entre na pasta <code>demo/01-built-in</code>
+                            </li>
+                            <li>
+                                Inicialize os <em>containers</em> com:
+                                <pre><code class="hljs shell" data-trim>
+                                    <span>$ </span> docker compose up -d
+                                </code></pre>
+                            </li>
+                            <li>
+                                Efetue requisições para <a href="http://localhost:8001" target="_blank"
+                                                           rel="noopener">localhost:8001</a>
+                            </li>
+                        </ul>
+                        <div class="alert">
+                            Dica: você pode usar a variável de ambiente <code>PHP_CLI_SERVER_WORKERS</code> para
+                            permitir requisições simultâneas para o próprio servidor
+                        </div>
+                    </section>
+                </section> <!-- Servidor embutido -->
 
                 <section> <!-- Apache -->
                     <section data-auto-animate data-auto-animate-restart>
@@ -254,17 +339,17 @@
                         <h2>Mãos na massa</h2>
                         <ul>
                             <li>
-                                Entre na pasta <code>demo/apache</code>
+                                Entre na pasta <code>demo/02-apache</code>
                             </li>
                             <li>
-                                Inicialize os <em>containers</em> com
+                                Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
                                     <span>$ </span> docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
-                                Efetue requisições para <a href="http://localhost:8000" target="_blank"
-                                                         rel="noopener">localhost:8000</a>
+                                Efetue requisições para <a href="http://localhost:8002" target="_blank"
+                                                           rel="noopener">localhost:8002</a>
                             </li>
                         </ul>
                     </section>
@@ -297,17 +382,17 @@
                         <h2>Mãos na massa</h2>
                         <ul>
                             <li>
-                                Entre na pasta <code>demo/nginx-fpm</code>
+                                Entre na pasta <code>demo/03-nginx-fpm</code>
                             </li>
                             <li>
-                                Inicialize os <em>containers</em> com
+                                Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
                                     <span>$ </span> docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
-                                Efetue requisições para <a href="http://localhost:8001" target="_blank"
-                                                          rel="noopener">localhost:8001</a>
+                                Efetue requisições para <a href="http://localhost:8003" target="_blank"
+                                                           rel="noopener">localhost:8003</a>
                             </li>
                         </ul>
                     </section>
@@ -344,9 +429,20 @@
                     <section>
                         <h1>Serverless</h1>
                         <h2>Mãos na massa</h2>
-                        <p>
-                            Vamos ver o projeto em <code>demo/serverless</code>
-                        </p>
+                        <ul>
+                            <li>
+                                Entre na pasta <code>demo/04-serverless</code>
+                            </li>
+                            <li>
+                                Configure as credenciais de acesso à AWS no arquivo <code>.env</code>
+                            </li>
+                            <li>
+                                Faça o <em>deploy</em> da Lambda com:
+                                <pre><code class="hljs shell" data-trim>
+                                    <span>$ </span> docker compose up
+                                </code></pre>
+                            </li>
+                        </ul>
                     </section>
                 </section> <!-- Serverless -->
 
@@ -373,17 +469,17 @@
                         <h2>Mãos na massa</h2>
                         <ul>
                             <li>
-                                Entre na pasta <code>demo/swoole</code>
+                                Entre na pasta <code>demo/05-swoole</code>
                             </li>
                             <li>
-                                Inicialize os <em>containers</em> com
+                                Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
                                     <span>$ </span> docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
-                                Efetue requisições para <a href="http://localhost:8002" target="_blank"
-                                                          rel="noopener">localhost:8002</a>
+                                Efetue requisições para <a href="http://localhost:8005" target="_blank"
+                                                           rel="noopener">localhost:8005</a>
                             </li>
                         </ul>
                     </section>

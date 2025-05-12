@@ -1,0 +1,9 @@
+services:
+  app:
+    image: php:8.4-cli-alpine
+    volumes:
+      - ../app/:/app
+    working_dir: /app
+    ports:
+      - "8001:80"
+    command: php -S localhost:8000 -t public/
