@@ -24,13 +24,17 @@
 /* Tema */
 .reveal-viewport {
   background: var(--r-background-color);
+}
+.reveal-viewport:not(.reveal-scroll) {
   background-image: linear-gradient(90deg, var(--php-dark-blue-color), var(--php-dark-magenta-color));
 }
 .slide {
+  background: var(--r-background-color) url(img/bg-texture-00.svg) 0 0 repeat;
+}
+body:not(.reveal-scroll) .slide {
   margin: 20px;
   width: calc(100% - 40px);
   height: calc(100% - 40px);
-  background: var(--r-background-color) url(img/bg-texture-00.svg) 0 0 repeat;
 }
 .reveal .slides {
   text-align: left;
