@@ -1,0 +1,10 @@
+# https://github.com/roadrunner-server/roadrunner/blob/master/.rr.yaml
+version: "3"
+server:
+  command: "php worker.php"
+http:
+  address: 0.0.0.0:8006
+  access_logs: true
+logs:
+  level: debug
+  mode: development

@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+    working_dir: /app
+    volumes:
+      - ../app:/app
+      - ./.rr.yaml:/app/.rr.yaml
+      - ./worker.php:/app/worker.php
+      - ./composer.json:/app/composer.json
+      - ./composer.lock:/app/composer.lock
+    ports:
+      - "8006:8006"

@@ -2,7 +2,7 @@ FROM php:8.4-cli-alpine AS builder
 
 WORKDIR /app
 
-COPY --from=composer /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 COPY ["composer.json", "composer.lock", "./"]
 
 RUN composer install

@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ -f "vendor/autoload.php" ]; then
+  echo "Projeto já inicializado com sucesso"
+  exit 0
+fi
+
+if [ `command -v composer` ]; then
+  echo "Executando composer localmente..."
+  composer install
+else
+  echo "Executando composer via Docker..."
+  docker run --rm -v "$PWD:/app" -w /app composer:2 composer install
+  if [ `stat -c "%U" vendor` != $USER ]; then
+    echo "Alterando permissão do diretório vendor"
+    sudo chown -R $USER:$USER vendor/
+  fi
+fi
+
+echo "OK"

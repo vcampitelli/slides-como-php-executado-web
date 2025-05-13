@@ -10,12 +10,12 @@ use Swoole\Http\Request;
 use Swoole\Http\Response;
 use Swoole\Http\Server;
 
-
-$http = new Server('0.0.0.0', 8002);
+$_ENV['__RETURN__RESPONSE__'] = true;
+$http = new Server('0.0.0.0', $_ENV['PORT'] ?? 80, SWOOLE_PROCESS);
 $http->on(
     'start',
     function (Server $http) {
-        echo "Swoole HTTP server listening at :8002.\n";
+        echo "Swoole HTTP server listening at :{$http->port}.\n";
     }
 );
 
@@ -28,7 +28,6 @@ $http->on(
     function (Request $request, Response $response) {
         $_SERVER['REQUEST_URI'] = $request->server['request_uri'];
         $_SERVER['REQUEST_METHOD'] = $request->server['request_method'];
-        $_SERVER['SWOOLE'] = true;
         $applicationResponse = run();
 
         $response->setStatusCode($applicationResponse->status);

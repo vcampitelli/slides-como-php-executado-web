@@ -1,0 +1,11 @@
+services:
+  app:
+    image: dunglas/frankenphp:latest
+    environment:
+      FRANKENPHP_CONFIG: "worker ./public/index.php"
+    working_dir: /app
+    volumes:
+      - ../app:/app
+      - ./worker.php:/app/public/index.php
+    ports:
+      - "8007:443"
