@@ -6,7 +6,6 @@
     "serverless-lift": "^1.31.0"
   },
   "scripts": {
-    "deploy": "serverless deploy",
-    "postdeploy": "rm -rf public/ src/"
+    "deploy": "serverless deploy"
   }
 }

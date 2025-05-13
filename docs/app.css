@@ -177,6 +177,10 @@ pre > code.shell > span {
   user-select: none;
   color: var(--php-medium-magenta-color);
 }
+pre > code.shell > em {
+  font-style: normal;
+  color: var(--php-medium-blue-color);
+}
 code, kbd {
   border-radius: var(--border-radius);
 }
@@ -184,7 +188,7 @@ code, kbd {
 /* Referências */
 div.references,
 a.reference {
-  font-size: 0.7em;
+  font-size: 0.65em;
 }
 div.references,
 a.reference {
@@ -199,23 +203,14 @@ a.reference:before {
   opacity: var(--link-opacity);
   content: '$ref = "';
 }
-a.reference:after {
+.references > a:before {
+  opacity: var(--link-opacity);
+  content: '$refs[] = "';
+}
+a.reference:after,
+.references > a:after {
   opacity: var(--link-opacity);
   content: '";';
-}
-.references:before {
-  color: var(--r-link-color);
-  opacity: var(--link-opacity);
-  content: '$refs = ["';
-}
-.references > a:not(:last-child):after {
-  opacity: var(--link-opacity);
-  content: '" , "';
-}
-.references:after {
-  color: var(--r-link-color);
-  opacity: var(--link-opacity);
-  content: '"];';
 }
 
 /* Links */
@@ -301,6 +296,18 @@ svg {
   display: flex;
   justify-content: space-between;
   column-gap: 20px;
+}
+.d-flex.cols-2 > div {
+  flex: calc(50% - 10px) 1 0;
+  box-sizing: border-box;
+}
+.d-flex > a > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Slides e Workshops */

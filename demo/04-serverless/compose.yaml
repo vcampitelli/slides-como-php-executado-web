@@ -1,15 +1,17 @@
 services:
   app:
     build:
-        context: ./
+        context: ../
+        dockerfile: 04-serverless/Dockerfile
     working_dir: /app
     volumes:
-      - ../app/public:/app/public/
-      - ../app/src:/app/src/
+      - ./:/app
+      - ../app/bootstrap:/app/bootstrap
+      - ../app/config:/app/config
+      - ../app/public:/app/public
+      - ../app/src:/app/src
       - vendor:/app/vendor/
       - nodeModules:/app/node_modules/
-    ports:
-      - "8004:80"
     env_file:
       - .env
     command: npm run deploy

@@ -2,7 +2,6 @@ service: app
 
 provider:
     name: aws
-    profile: bref
     region: sa-east-1
 
 plugins:
@@ -13,7 +12,7 @@ functions:
     api:
         handler: public/index.php
         description: ''
-        runtime: php-83-fpm
+        runtime: php-84-fpm
         timeout: 28 # segundos (API Gateway tem um timeout padrão de 29 segundos)
         events:
             -   httpApi: '*'
@@ -30,3 +29,5 @@ package:
     patterns:
         - '!node_modules/**'
         - '!.gitignore'
+        - '!.env'
+        - '!.env.dist'
