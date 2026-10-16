@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+reserve_memory() {
+    local reservations count
+    until mkdir "$SERVER_STATE/lock" 2>/dev/null; do sleep 0.01; done
+    reservations=("$SERVER_STATE/memory/"*)
+    count=${#reservations[@]}
+    [[ -e ${reservations[0]} ]] || count=0
+    if (( (count + 1) * ${maxMemoryPerProcess%M} > ${maxMemoryOverall%M} )); then
+        rmdir "$SERVER_STATE/lock"
+        return 1
+    fi
+    : >"$SERVER_STATE/memory/$$"
+    rmdir "$SERVER_STATE/lock"
+}
+
+release_memory() {
+    until mkdir "$SERVER_STATE/lock" 2>/dev/null; do sleep 0.01; done
+    rm -f -- "$SERVER_STATE/memory/$$"
+    rmdir "$SERVER_STATE/lock"
+}
+
+log_event() {
+    local event=$1 action=${2:-} active
+    # Serializa o contador e o log entre os processos de atendimento.
+    until mkdir "$SERVER_STATE/lock" 2>/dev/null; do sleep 0.01; done
+    case $action in
+        start) : >"$SERVER_STATE/active/$$" ;;
+        finish) rm -f -- "$SERVER_STATE/active/$$" ;;
+    esac
+    local processes=("$SERVER_STATE/active/"*)
+    active=${#processes[@]}
+    [[ -e ${processes[0]} ]] || active=0
+    printf '[%(%Y-%m-%d %H:%M:%S)T] PID=%s | %s | forks ativos=%s\n' \
+        -1 "$$" "$event" "$active" >&3
+    rmdir "$SERVER_STATE/lock"
+}
+
+finish_request() {
+    local status=$?
+    release_memory
+    [[ -z ${output:-} ]] || rm -f -- "$output"
+    log_event "Fork terminou (status=$status)" finish
+}
+
+handle_request() {
+    local method target protocol header path query=''
+    IFS=' ' read -r -t 10 method target protocol || return 0
+    protocol=${protocol%$'\r'}
+    local request
+    printf -v request 'Requisição recebida: %q %q %q' "$method" "$target" "$protocol"
+    log_event "$request"
+    if [[ ! $method =~ ^[A-Z]+$ || $target != /* || ! $protocol =~ ^HTTP/1\.[01]$ ]]; then
+        printf 'HTTP/1.1 400 Bad Request\r\nContent-Length: 0\r\nConnection: close\r\n\r\n'
+        return
+    fi
+
+    # Consume os headers antes de executar a aplicação.
+    while IFS= read -r -t 10 header; do
+        [[ $header == $'\r' || -z $header ]] && break
+    done
+
+    path=${target%%\?*}
+    [[ $target != *\?* ]] || query=${target#*\?}
+    if ! reserve_memory; then
+        log_event "Requisição recusada: orçamento de memória esgotado ($maxMemoryOverall)"
+        printf 'HTTP/1.1 503 Service Unavailable\r\nContent-Length: 0\r\nConnection: close\r\n\r\n'
+        return
+    fi
+    output=$(mktemp)
+
+    # O PHP CLI importa variáveis do ambiente para $_SERVER.
+    if REQUEST_METHOD="$method" REQUEST_URI="$target" PATH_INFO="$path" \
+        QUERY_STRING="$query" SCRIPT_NAME=/index.php \
+        SCRIPT_FILENAME="$APP_DIR/public/index.php" DOCUMENT_ROOT="$APP_DIR/public" \
+        SERVER_PROTOCOL="$protocol" SERVER_PORT=80 \
+        php -d "memory_limit=$maxMemoryPerProcess" -d variables_order=EGPCS "$APP_DIR/public/index.php" >"$output"; then
+        release_memory
+        printf 'HTTP/1.1 200 OK\r\n'
+    else
+        release_memory
+        printf 'Internal Server Error\n' >"$output"
+        printf 'HTTP/1.1 500 Internal Server Error\r\n'
+    fi
+    printf 'Content-Type: text/html; charset=UTF-8\r\nContent-Length: %s\r\nConnection: close\r\n\r\n' "$(wc -c <"$output")"
+    [[ $method == HEAD ]] || cat -- "$output"
+}
+
+# Executado pelo socat em um processo separado para cada conexão.
+# O descritor 3 aponta para o stdout do servidor; stdout é o socket HTTP.
+exec 3>>"$SERVER_STDOUT"
+trap finish_request EXIT
+log_event 'Fork iniciado para atender conexão' start
+handle_request
+exit 0

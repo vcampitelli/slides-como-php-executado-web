@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+maxMemoryPerProcess=64M
+maxMemoryOverall=512M
+
+set -euo pipefail
+
+if (( $# > 1 )); then
+    printf 'Uso: %s [diretório da aplicação]\n' "$0" >&2
+    exit 1
+fi
+
+for dependency in php socat; do
+    command -v "$dependency" >/dev/null || {
+        printf 'Dependência ausente: %s\n' "$dependency" >&2
+        exit 1
+    }
+done
+
+export APP_DIR
+APP_DIR=$(cd -- "${1:-/app}" && pwd)
+[[ -f $APP_DIR/public/index.php ]] || {
+    printf 'Arquivo não encontrado: %s/public/index.php\n' "$APP_DIR" >&2
+    exit 1
+}
+export maxMemoryPerProcess maxMemoryOverall REQUEST_SCRIPT
+REQUEST_SCRIPT=$(cd -- "$(dirname -- "$0")" && pwd)/handle-request
+[[ -f $REQUEST_SCRIPT ]] || {
+    printf 'Arquivo não encontrado: %s\n' "$REQUEST_SCRIPT" >&2
+    exit 1
+}
+cd -- "$APP_DIR"
+export SERVER_STATE SERVER_STDOUT
+SERVER_STATE=$(mktemp -d)
+SERVER_STDOUT=/proc/$$/fd/1
+mkdir "$SERVER_STATE/active" "$SERVER_STATE/memory"
+cleanup() {
+    trap - EXIT INT TERM
+    kill -TERM -- "${listener_pid}" 2>/dev/null || true
+    wait "$listener_pid" 2>/dev/null || true
+    # Os handlers ainda ativos removem seus registros ao terminar.
+    while compgen -G "$SERVER_STATE/active/*" >/dev/null; do sleep 0.05; done
+    rm -rf -- "$SERVER_STATE"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+printf 'Escutando em http://0.0.0.0:80 — aplicação: %s | PID=%s | forks ativos=0\n' "$APP_DIR" "$$"
+socat TCP-LISTEN:80,reuseaddr,fork SYSTEM:'exec bash "$REQUEST_SCRIPT"' &
+listener_pid=$!
+wait "$listener_pid"

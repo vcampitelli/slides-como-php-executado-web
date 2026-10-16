@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./server:/usr/local/bin/server
+      - ./handle-request:/usr/local/bin/handle-request
+      - ../app:/app
+    ports:
+      - "8008:80"
