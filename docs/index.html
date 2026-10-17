@@ -20,13 +20,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+        <link rel="stylesheet" integrity="sha256-xGoLxkNRWscNGQstexcb4qRorIGTh+9hxS3XqqHF/fA=" crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.49.0/dist/tabler-icons.min.css">
         <link rel="stylesheet" href="app.css">
         <link rel="shortcut icon" type="image/svg+xml" href="img/php-logo.svg">
     </head>
     <body>
         <div class="reveal">
             <div class="slides">
-                <section id="first-slide">
+                <section id="first-slide" class="first-slide">
                     <h1 class="title">
                         Como o <span>PHP</span> é<br>executado na Web?
                     </h1>
@@ -34,12 +36,11 @@
                 </section>
 
                 <section> <!-- Sobre -->
-                    <section>
-                        <h1 class="title">Sobre</h1>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h1 class="title"><i class="ti ti-user-circle heading-icon" aria-hidden="true"></i> Sobre</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1>Sobre</h1>
-                        <h2>Sobre mim</h2>
+                        <h1 class="title"><i class="ti ti-user-circle heading-icon" aria-hidden="true"></i> Sobre</h1>
                         <div id="about-me">
                             <div class="text-center">
                                 <figure id="profile-pic">
@@ -156,11 +157,11 @@
                 </section> <!-- Sobre -->
 
                 <section> <!-- Preparação -->
-                    <section>
-                        <h1 class="title">Preparação</h1>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h1 class="title"><i class="ti ti-tools heading-icon" aria-hidden="true"></i> Preparação</h1>
                     </section>
-                    <section>
-                        <h1 class="title">Preparação</h1>
+                    <section data-auto-animate>
+                        <h1 class="title"><i class="ti ti-tools heading-icon" aria-hidden="true"></i> Preparação</h1>
                         <div class="d-flex justify-start items-center">
                             <div style="flex-shrink: 0">
                                 <a href="https://github.com/vcampitelli/slides-como-php-executado-web" target="_blank"
@@ -177,8 +178,8 @@
                             </div>
                         </div>
                     </section>
-                    <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Preparação</h1>
+                    <section data-auto-animate>
+                        <h1 class="title"><i class="ti ti-tools heading-icon" aria-hidden="true"></i> Preparação</h1>
                         <ol>
                             <li>
                                 Certifique-se que você tenha o
@@ -196,7 +197,7 @@
                                 <a href="https://github.com/vcampitelli/slides-como-php-executado-web" target="_blank"
                                    rel="noopener"><code>vcampitelli/slides-como-php-executado-web</code></a> do GitHub
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> git clone --recursive git@github.com/vcampitelli/slides-como-php-executado-web.git
+                                    $ git clone --recursive git@github.com/vcampitelli/slides-como-php-executado-web.git
                                 </code></pre>
                             </li>
                             <li>
@@ -206,7 +207,7 @@
                         <p class="text-right text-muted fs-small fs-italic">Continua... &raquo;</p>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Preparação</h1>
+                        <h1 class="title"><i class="ti ti-tools heading-icon" aria-hidden="true"></i> Preparação</h1>
                         <ol start="4">
                             <li>
                                 Na pasta <code>demo</code>, temos 5 pastas com aplicações de demonstração, cada uma
@@ -255,7 +256,7 @@
                             <li>
                                 Entre na pasta <code>demo/app</code> e instale as dependências:
                                 <pre><code class="shell" data-trim>
-                                    <span>$ </span> ./install
+                                    $ ./install
                                 </code></pre>
                             </li>
                         </ol>
@@ -263,34 +264,51 @@
                 </section> <!-- Preparação -->
 
                 <section> <!-- Introdução -->
-                    <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Introdução</h1>
+                    <section>
+                        <h1 class="title"><i class="ti ti-bulb heading-icon" aria-hidden="true"></i> Introdução</h1>
                     </section>
                     <section data-auto-animate>
                         <h1>Introdução</h1>
-                        <h2>Como o PHP é executado?</h2>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <h2><i class="ti ti-file-code heading-icon" aria-hidden="true"></i> Compilação</h2>
+                                <img src="img/compilacao.svg" alt="Compilação" class="insert-svg">
+                                <a href="https://thevaluable.dev/difference-between-compiler-interpreter/"
+                                    class="reference" target="_blank" rel="noopener">thevaluable.dev</a>
+                            </div>
+                            <div>
+                                <h2><i class="ti ti-terminal-2 heading-icon" aria-hidden="true"></i> Interpretação</h2>
+                                <img src="img/interpretacao.svg" alt="Interpretação" class="insert-svg">
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Introdução</h1>
+                        <h2><i class="ti ti-cpu heading-icon" aria-hidden="true"></i> Como o PHP é executado?</h2>
                         <div class="r-stretch d-flex">
-                            <a href="img/php-internals.jpg" target="_blank" rel="noopener" style="flex-shrink: 0">
-                                <img src="img/php-internals.jpg" alt="Arquitetura do PHP" class="my-0">
-                            </a>
-                            <div class="d-flex" style="flex-direction: column">
-                                <div>
-                                    <img src="img/jit.png" alt="JIT" class="my-0">
-                                </div>
-                                <div style="align-self: end">
-                                    <div class="references">
-                                        <a href="https://stackoverflow.com/questions/24797539/how-does-php-works-and-what-is-its-architecture/46507205"
-                                           target="_blank" rel="noopener">
-                                            How does PHP works and what is its architecture? - StackOverflow
-                                        </a>
-                                        <a href="https://php.watch/articles/jit-in-depth" target="_blank" rel="noopener">
-                                            PHP JIT in Depth - PHP Watch
-                                        </a>
-                                        <a href="https://www.zend.com/blog/exploring-new-php-jit-compiler" target="_blank"
-                                           rel="noopener">
-                                            Exploring the New PHP JIT Compiler - Zend
-                                        </a>
-                                    </div>
+                            <img src="img/jit.svg" alt="JIT" class="my-0">
+                            <div class="fragment">
+                                <p class="mt-0">
+                                    Dica: utiliza a extensão
+                                    <a href="https://github.com/derickr/vld" target="_blank" rel="noopener">vld</a>
+                                    para visualizar os Opcodes de seu script:
+                                </p>
+                                <pre><code class="hljs shell" data-trim style="white-space: pre-wrap">$pie install derickr/vld
+$php -d vld.active=1 \
+    -d vld.execute=0 \
+    -f arquivo.php</code></pre>
+                                <div class="references">
+                                    <a href="https://stackoverflow.com/questions/24797539/how-does-php-works-and-what-is-its-architecture/46507205"
+                                        target="_blank" rel="noopener">
+                                        How does PHP works and what is its architecture? - StackOverflow
+                                    </a>
+                                    <a href="https://php.watch/articles/jit-in-depth" target="_blank" rel="noopener">
+                                        PHP JIT in Depth - PHP Watch
+                                    </a>
+                                    <a href="https://www.zend.com/blog/exploring-new-php-jit-compiler" target="_blank"
+                                        rel="noopener">
+                                        Exploring the New PHP JIT Compiler - Zend
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -299,23 +317,27 @@
 
                 <section> <!-- Servidor embutido -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Servidor embutido</h1>
+                        <h1 class="title"><i class="ti ti-server heading-icon" aria-hidden="true"></i> Servidor embutido</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Servidor embutido</h1>
+                        <h1 class="title"><i class="ti ti-server heading-icon" aria-hidden="true"></i> Servidor embutido</h1>
                         <p>
                             O PHP possui um servidor embutido <b>desde a versão 5.4</b> (de 2012), que pode ser
                             utilizado para desenvolvimento e testes rápidos através do comando abaixo:
                         </p>
                         <pre><code class="hljs shell" data-trim>
-                            <span>$ </span> php -S <em>&lt;endereço&gt;</em>:<em>&lt;porta&gt;</em>
+                            $ php -S endereco:porta
                         </code></pre>
-                        <a href="https://www.php.net/manual/en/features.commandline.webserver.php" target="_blank"
-                           rel="noopener" class="reference">PHP: Built-in web server</a>
+                        <div class="references">
+                            <a href="https://www.php.net/manual/en/features.commandline.webserver.php"
+                                target="_blank" rel="noopener">PHP: Built-in web server</a>
+                            <a href="https://github.com/php/php-src/blob/master/sapi/cli/php_cli_server.c"
+                                target="_blank" rel="noopener">php-src/php_cli_server.c</a>
+                        </div>
                     </section>
                     <section>
                         <h1>Servidor embutido</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/01-built-in</code>
@@ -323,7 +345,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -340,10 +362,10 @@
 
                 <section> <!-- Apache -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Apache</h1>
+                        <h1 class="title"><i class="ti ti-feather heading-icon" aria-hidden="true"></i> Apache</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Apache</h1>
+                        <h1 class="title"><i class="ti ti-feather heading-icon" aria-hidden="true"></i> Apache</h1>
                         <p>
                             Servidor Web criado em 1995 por desenvolvedores da
                             <a href="https://en.wikipedia.org/wiki/National_Center_for_Supercomputing_Applications"
@@ -364,7 +386,7 @@
                     </section>
                     <section>
                         <h1>Apache</h1>
-                        <h2>Como o PHP é executado?</h2>
+                        <h2><i class="ti ti-cpu heading-icon" aria-hidden="true"></i> Como o PHP é executado?</h2>
                         <p>
                             No modelo mais antigo de execução (chamado <em>prefork</em>), um interpretador do PHP é
                             embutido no Apache em um módulo chamado <code>mod_php</code>
@@ -381,7 +403,7 @@
                     </section>
                     <section>
                         <h1>Apache</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/02-apache</code>
@@ -389,7 +411,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -402,10 +424,10 @@
 
                 <section> <!-- Nginx e PHP-FPM -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Nginx e PHP-FPM</h1>
+                        <h1 class="title"><i class="ti ti-server-cog heading-icon" aria-hidden="true"></i> Nginx e PHP-FPM</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Nginx e PHP-FPM</h1>
+                        <h1 class="title"><i class="ti ti-server-cog heading-icon" aria-hidden="true"></i> Nginx e PHP-FPM</h1>
                         <p>
                             O <a href="https://nginx.org/" target="_blank" rel="noopener">nginx</a> é um servidor HTTP
                             extremamente performático, mas que <b>não possui interpretador PHP embutido</b>,
@@ -419,12 +441,12 @@
                         </p>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Nginx e PHP-FPM</h1>
+                        <h1 class="title"><i class="ti ti-server-cog heading-icon" aria-hidden="true"></i> Nginx e PHP-FPM</h1>
                         <img src="img/nginx-php-fpm.svg" alt="Funcionamento do Nginx + PHP-FPM" class="insert-svg">
                     </section>
                     <section>
                         <h1>Nginx e PHP-FPM</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/03-nginx-fpm</code>
@@ -432,7 +454,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -445,10 +467,10 @@
 
                 <section> <!-- Serverless -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Serverless</h1>
+                        <h1 class="title"><i class="ti ti-cloud heading-icon" aria-hidden="true"></i> Serverless</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Serverless</h1>
+                        <h1 class="title"><i class="ti ti-cloud heading-icon" aria-hidden="true"></i> Serverless</h1>
                         <p>
                             O <a href="https://aws.amazon.com/pt/lambda/" target="_blank" rel="noopener">AWS Lambda</a>
                             não possui suporte <b>nativo</b> ao PHP, mas permite facilmente configurarmos um ambiente
@@ -465,7 +487,7 @@
                     </section>
                     <section>
                         <h1>Serverless</h1>
-                        <h2>Bref</h2>
+                        <h2><i class="ti ti-brand-aws heading-icon" aria-hidden="true"></i> Bref</h2>
                         <p class="fw-bold">Como o Bref funciona?</p>
                         <img src="img/bref-fpm.png" alt="Como o Bref funciona?">
                         <a href="https://bref.sh/docs/runtimes/fpm-runtime" target="_blank" rel="noopener"
@@ -473,7 +495,7 @@
                     </section>
                     <section>
                         <h1>Serverless</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/04-serverless</code>
@@ -484,7 +506,7 @@
                             <li>
                                 Faça o <em>deploy</em> da Lambda com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up
+                                    $ docker compose up
                                 </code></pre>
                             </li>
                         </ul>
@@ -493,10 +515,10 @@
 
                 <section> <!-- Swoole -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Swoole</h1>
+                        <h1 class="title"><i class="ti ti-bolt heading-icon" aria-hidden="true"></i> Swoole</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Swoole</h1>
+                        <h1 class="title"><i class="ti ti-bolt heading-icon" aria-hidden="true"></i> Swoole</h1>
                         <blockquote>
                             A parallel network communication engine based on asynchronous event-driven and coroutine,
                             written in C++, providing coroutine and high-performance network programming support for PHP
@@ -506,12 +528,12 @@
                         </a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Swoole</h1>
+                        <h1 class="title"><i class="ti ti-bolt heading-icon" aria-hidden="true"></i> Swoole</h1>
                         <img src="img/swoole.svg" alt="Funcionamento do Swoole" class="insert-svg">
                     </section>
                     <section>
                         <h1>Swoole</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/05-swoole</code>
@@ -519,7 +541,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -532,10 +554,10 @@
 
                 <section> <!-- RoadRunner -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">RoadRunner</h1>
+                        <h1 class="title"><i class="ti ti-route heading-icon" aria-hidden="true"></i> RoadRunner</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">RoadRunner</h1>
+                        <h1 class="title"><i class="ti ti-route heading-icon" aria-hidden="true"></i> RoadRunner</h1>
                         <blockquote>
                             RoadRunner is a high-performance PHP application server, load-balancer, and process manager
                             written in Golang
@@ -544,7 +566,7 @@
                            class="reference">RoadRunner</a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">RoadRunner</h1>
+                        <h1 class="title"><i class="ti ti-route heading-icon" aria-hidden="true"></i> RoadRunner</h1>
                         <p>
                             Projeto que começou em 2017 e teve sua primeira versão lançada em janeiro de 2018, tornou-se
                             muito conhecido por ser o primeiro modelo de execução em PHP a permitir a criação de
@@ -557,16 +579,16 @@
                         <a href="https://docs.roadrunner.dev/docs/plugins/grpc" target="_blank" rel="noopener"
                            class="reference">gRPC | RoadRunner</a>
                     </section>
-                    <section data-auto-animate>
+                    <section>
                         <h1>RoadRunner</h1>
-                        <h2>Arquitetura básica</h2>
+                        <h2><i class="ti ti-sitemap heading-icon" aria-hidden="true"></i> Arquitetura básica</h2>
                         <img src="img/roadrunner.png" alt="What is RoadRunner?">
                         <a href="https://docs.roadrunner.dev/docs" target="_blank" rel="noopener"
                            class="reference">What is RoadRunner?</a>
                     </section>
                     <section>
                         <h1>RoadRunner</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/06-roadrunner</code>
@@ -574,7 +596,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -587,10 +609,10 @@
 
                 <section> <!-- FrankenPHP -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">FrankenPHP</h1>
+                        <h1 class="title"><i class="ti ti-puzzle heading-icon" aria-hidden="true"></i> FrankenPHP</h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">FrankenPHP</h1>
+                        <h1 class="title"><i class="ti ti-puzzle heading-icon" aria-hidden="true"></i> FrankenPHP</h1>
                         <blockquote>
                             FrankenPHP is a modern application server for PHP built on top of the Caddy web server.
                         </blockquote>
@@ -598,7 +620,7 @@
                            class="reference">FrankenPHP</a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">FrankenPHP</h1>
+                        <h1 class="title"><i class="ti ti-puzzle heading-icon" aria-hidden="true"></i> FrankenPHP</h1>
                         <p>
                             Projeto começou em 2021, mas teve sua primeira versão oficial em 2023, causando um certo
                             rebuliço na comunidade devido à sua alta performance
@@ -607,7 +629,7 @@
                            class="reference">FrankenPHP</a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">FrankenPHP</h1>
+                        <h1 class="title"><i class="ti ti-puzzle heading-icon" aria-hidden="true"></i> FrankenPHP</h1>
                         <p>Possui dos modelos de execução:</p>
                         <div class="d-flex cols-2">
                             <div class="fragment">
@@ -632,7 +654,7 @@
                     </section>
                     <section>
                         <h1>FrankenPHP</h1>
-                        <h2>Mãos na massa</h2>
+                        <h2><i class="ti ti-keyboard heading-icon" aria-hidden="true"></i> Mãos na massa</h2>
                         <ul>
                             <li>
                                 Entre na pasta <code>demo/07-frankenphp</code>
@@ -640,7 +662,7 @@
                             <li>
                                 Inicialize os <em>containers</em> com:
                                 <pre><code class="hljs shell" data-trim>
-                                    <span>$ </span> docker compose up -d
+                                    $ docker compose up -d
                                 </code></pre>
                             </li>
                             <li>
@@ -649,14 +671,18 @@
                             </li>
                         </ul>
                     </section>
-                </section> <!-- Outros modelos -->
+                </section> <!-- FrankenPHP -->
 
                 <section> <!-- Benchmarks -->
                     <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="title">Benchmarks</h1>
+                        <h1 class="title">
+                            <i class="ti ti-chart-bar heading-icon" aria-hidden="true"></i> Benchmarks
+                        </h1>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Benchmarks</h1>
+                        <h1 class="title">
+                            <i class="ti ti-chart-bar heading-icon" aria-hidden="true"></i> Benchmarks
+                        </h1>
                         <img src="img/benchmark-1.png" alt="Benchmark 1">
                         <a href="https://medium.com/@dimdev/9-php-runtimes-performance-benchmark-cbc0527b9df9"
                            target="_blank" rel="noopener" class="reference" data-id="reference">
@@ -664,7 +690,9 @@
                         </a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Benchmarks</h1>
+                        <h1 class="title">
+                            <i class="ti ti-chart-bar heading-icon" aria-hidden="true"></i> Benchmarks
+                        </h1>
                         <img src="img/benchmark-2.png" alt="Benchmark 2">
                         <a href="https://medium.com/@dimdev/9-php-runtimes-performance-benchmark-cbc0527b9df9"
                            target="_blank" rel="noopener" class="reference" data-id="reference">
@@ -672,7 +700,9 @@
                         </a>
                     </section>
                     <section data-auto-animate>
-                        <h1 class="title">Benchmarks</h1>
+                        <h1 class="title">
+                            <i class="ti ti-chart-bar heading-icon" aria-hidden="true"></i> Benchmarks
+                        </h1>
                         <img src="img/benchmark-3.png" alt="Benchmark 3">
                         <a href="https://medium.com/@dimdev/9-php-runtimes-performance-benchmark-cbc0527b9df9"
                            target="_blank" rel="noopener" class="reference" data-id="reference">
@@ -681,8 +711,57 @@
                     </section>
                 </section> <!-- Benchmarks -->
 
+                <section> <!-- WebAssembly -->
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h1 class="title"><i class="ti ti-binary heading-icon" aria-hidden="true"></i> WebAssembly</h1>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="title"><i class="ti ti-binary heading-icon" aria-hidden="true"></i> WebAssembly</h1>
+                        <ul>
+                            <li>
+                                <strong>Formato binário portátil</strong> (<code>.wasm</code>) de baixo nível,
+                                executado em um ambiente isolado
+                            </li>
+                            <li>
+                                Linguagens como <strong>C, C++ e Rust</strong> podem ser compiladas para Wasm
+                            </li>
+                            <li>
+                                O Browser compila o módulo para <strong>código de máquina</strong>, com potencial de
+                               desempenho próximo ao nativo
+                            </li>
+                            <li>
+                                O acesso ao <strong>DOM e às APIs do navegador</strong> passa pelo JavaScript,
+                                respeitando restrições de segurança
+                            </li>
+                        </ul>
+                        <div class="references">
+                            <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Concepts" target="_blank" rel="noopener">WebAssembly — MDN</a>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="title"><i class="ti ti-binary heading-icon" aria-hidden="true"></i> WebAssembly</h1>
+                        <div class="d-flex cols-2 justify-start">
+                            <div>
+                                <pre id="sample-php" class="hljs php-editor" role="textbox"
+                                    aria-label="Código PHP" aria-multiline="true" tabindex="0">&lt;?php
+echo "Olá do PHP no navegador!", PHP_EOL;
+echo "PHP ", PHP_VERSION;
+</pre>
+                                <div class="d-flex">
+                                    <button id="wasm-run" type="button">Executar</button>
+                                    <a href="https://github.com/derickr/php-wasm-builder" class="reference"
+                                        target="_blank" rel="noopener">derickr/php-wasm-builder</a>
+                                </div>
+                            </div>
+                            <div style="flex-grow: 1">
+                                <pre id="wasm-output" class="hljs" aria-live="polite"></pre>
+                            </div>
+                        </div>
+                    </section>
+                </section> <!-- WebAssembly -->
+
                 <section> <!-- Treinamentos in company -->
-                    <h1 class="title">Treinamentos <em>in company</em></h1>
+                    <h1 class="title"><i class="ti ti-school heading-icon" aria-hidden="true"></i> Treinamentos <em>in company</em></h1>
                     <div class="d-flex items-center">
                         <div id="qrcode-workshops-text">
                             Gostou? Então conheça meus treinamentos corporativos e sob demanda sobre Desenvolvimento,
@@ -700,7 +779,7 @@
                 </section> <!-- Treinamentos in company -->
 
                 <section> <!-- Obrigado -->
-                    <h1 class="text-center title" style="margin-right: 100px">Obrigado!</h1>
+                    <h1 class="text-center title" style="margin-right: 100px"><i class="ti ti-heart heading-icon" aria-hidden="true"></i> Obrigado!</h1>
                     <div class="about-me-links">
                         <a href="https://viniciuscampitelli.com" target="_blank" rel="noopener">
                             <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -797,7 +876,9 @@
         </div>
 
         <script src="reveal.js/dist/reveal.js"></script>
-        <script src="reveal.js/plugin/notes/notes.js"></script>
+        <!--<script src="reveal.js/plugin/notes/notes.js"></script>-->
+        <script src="reveal.js/dist/plugin/highlight.js"></script>
+        <script type="module" src="wasm/wasm.mjs"></script>
         <script src="app.js"></script>
     </body>
 </html>

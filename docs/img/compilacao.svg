@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="514" viewBox="0 83 360 617" role="img" aria-labelledby="title desc">
+<title id="title">Compilação antecipada (AOT)</title><desc id="desc">Código-fonte compilado para código de máquina antes da execução.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/></marker></defs>
+<style>text { font-family:"Fira Sans",Helvetica,sans-serif; font-size:16px; fill:#151515; text-anchor:middle } .heading { font-weight:700 } .small { font-size:13px } .arrow { fill:none; stroke:#222; stroke-width:1.4; marker-end:url(#arrow) }</style>
+
+<g class="fragment" data-fragment-index="0">
+<rect x="15" y="95" width="330" height="280" fill="#fff" stroke="#666" stroke-width="1"/>
+<rect x="15" y="95" width="330" height="30" fill="#f4f4f4" stroke="#666" stroke-width="1"/>
+<text x="180" y="116" class="heading"><tspan x="180" dy="0">Desenvolvimento</tspan></text>
+<rect x="30" y="145" width="300" height="52" fill="#d6e8ce" stroke="#82a36c" stroke-width="1"/>
+<text x="180" y="176" class=""><tspan x="180" dy="0">Código-fonte</tspan></text>
+<path class="arrow" d="M180 197 L180 219"/>
+<rect x="30" y="222" width="300" height="52" fill="#d1eb8b" stroke="#6a8139" stroke-width="1" stroke-dasharray="5 4" rx="7"/>
+<text x="180" y="253" class=""><tspan x="180" dy="0">Compilador</tspan></text>
+<path class="arrow" d="M180 274 L180 296"/>
+<rect x="30" y="299" width="300" height="52" fill="#dfd2e8" stroke="#997ca8" stroke-width="1"/>
+<text x="180" y="330" class=""><tspan x="180" dy="0">Código de máquina</tspan></text>
+</g>
+<g class="fragment" data-fragment-index="1">
+<rect x="15" y="400" width="330" height="270" fill="#fff" stroke="#666" stroke-width="1"/>
+<rect x="15" y="400" width="330" height="30" fill="#f4f4f4" stroke="#666" stroke-width="1"/>
+<text x="180" y="421" class="heading"><tspan x="180" dy="0">Execução</tspan></text>
+<rect x="134" y="450" width="196" height="52" fill="#dfd2e8" stroke="#997ca8" stroke-width="1"/>
+<text x="232" y="481" class=""><tspan x="232" dy="0">Código de máquina</tspan></text>
+<rect x="30" y="440" width="67" height="210" fill="#b2deed" stroke="#5597ad" stroke-width="1" stroke-dasharray="5 4" rx="7"/>
+<text x="63.5" y="550" class="small"><tspan x="63.5" dy="0">SO</tspan></text>
+<rect x="180" y="558" width="105" height="100" fill="#f8d7d1" stroke="#ad4638" stroke-width="3"/>
+<text x="232.5" y="614" class=""><tspan x="232.5" dy="0">CPU</tspan></text>
+<path class="arrow" d="M232 502 L232 555"/>
+<path class="arrow" d="M134 476 L100 476"/>
+<path class="arrow" d="M97 609 L177 609"/>
+</g>
+</svg>

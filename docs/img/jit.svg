@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="730" viewBox="0 0 620 730" role="img" aria-labelledby="php-jit-title php-jit-desc" font-family="Fira Sans,Helvetica,sans-serif" font-size="16" fill="#151515" text-anchor="middle">
+  <title id="php-jit-title">JIT no PHP — modo tracing</title>
+  <desc id="php-jit-desc">O compilador gera opcodes, armazenados pelo OPcache. A máquina virtual executa os opcodes e detecta trechos frequentes. Com JIT habilitado, esses trechos são registrados e compilados para código nativo, armazenado no buffer JIT e executado pela CPU. Outros trechos continuam na VM.</desc>
+  <metadata>Fontes: https://www.php.net/manual/en/opcache.configuration.php ; https://www.php.net/manual/en/book.opcache.php ; https://wiki.php.net/rfc/jit</metadata>
+  <defs>
+    <marker id="php-jit-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#222"/></marker>
+  </defs>
+  <style>
+    .php-jit-heading { font-weight:700 }
+    .php-jit-small { font-size:13px }
+    .php-jit-arrow { fill:none; stroke:#222; stroke-width:1.4; marker-end:url(#php-jit-arrow) }
+  </style>
+  <g class="fragment" data-fragment-index="0">
+    <rect x="15" y="12" width="590" height="211" fill="#fff" stroke="#666"/>
+    <rect x="15" y="12" width="590" height="30" fill="#f4f4f4" stroke="#666"/>
+    <text x="310" y="33" class="php-jit-heading">Preparação do código</text>
+    <rect x="35" y="72" width="160" height="64" fill="#d6e8ce" stroke="#82a36c"/>
+    <text x="115" y="109">Código PHP</text>
+    <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M195 104 H225"/>
+    <rect x="228" y="72" width="160" height="64" rx="7" fill="#d1eb8b" stroke="#6a8139" stroke-dasharray="5 4"/>
+    <text x="308" y="100"><tspan x="308">Compilador</tspan><tspan x="308" dy="20">Zend</tspan></text>
+    <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M388 104 H418"/>
+    <rect x="421" y="72" width="164" height="64" fill="#fce8ce" stroke="#d69a23"/>
+    <text x="503" y="100"><tspan x="503">Opcodes</tspan><tspan x="503" dy="20">no OPcache</tspan></text>
+    <text x="310" y="177" class="php-jit-small">O OPcache reutiliza os opcodes nas próximas requisições.</text>
+    <text x="310" y="199" class="php-jit-small">Na ausência de opcodes válidos em cache, o PHP recompila o arquivo.</text>
+  </g>
+  <g class="fragment" data-fragment-index="1">
+    <rect x="15" y="249" width="590" height="464" fill="#fff" stroke="#666"/>
+    <rect x="15" y="249" width="590" height="30" fill="#f4f4f4" stroke="#666"/>
+    <text x="310" y="270" class="php-jit-heading">Execução</text>
+    <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M503 223 V236 H145 V309"/>
+    <rect x="40" y="312" width="210" height="66" rx="7" fill="#ffd09e" stroke="#b78253" stroke-dasharray="5 4"/>
+    <text x="145" y="339"><tspan x="145">Máquina virtual Zend</tspan><tspan x="145" dy="21">Executa os opcodes</tspan></text>
+    <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M145 378 V634 H217"/>
+    <text x="163" y="520" text-anchor="start" class="php-jit-small"><tspan x="163">Execução</tspan><tspan x="163" dy="18">pela VM</tspan></text>
+    <rect x="220" y="606" width="180" height="65" fill="#f8d7d1" stroke="#ad4638" stroke-width="3"/>
+    <text x="310" y="645">CPU</text>
+    <g class="fragment" data-fragment-index="2">
+      <rect x="330" y="286" width="265" height="296" fill="#fff" stroke="#666"/>
+      <rect x="330" y="286" width="265" height="20" fill="#f4f4f4" stroke="#666"/>
+      <text x="462.5" y="301" class="php-jit-heading php-jit-small">JIT · modo tracing</text>
+      <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M250 345 H347"/>
+      <rect x="350" y="312" width="230" height="66" rx="7" fill="#ffd09e" stroke="#b78253" stroke-dasharray="5 4"/>
+      <text x="465" y="338"><tspan x="465">Detecta trechos frequentes</tspan><tspan x="465" dy="21">e registra o trace</tspan></text>
+      <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M465 378 V411"/>
+      <rect x="350" y="414" width="230" height="58" rx="7" fill="#d1eb8b" stroke="#6a8139" stroke-dasharray="5 4"/>
+      <text x="465" y="439"><tspan x="465">Compilador JIT</tspan><tspan x="465" dy="20">Otimiza o trace</tspan></text>
+      <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M465 472 V505"/>
+      <rect x="350" y="508" width="230" height="58" fill="#dfd2e8" stroke="#997ca8"/>
+      <text x="465" y="532"><tspan x="465">Código de máquina</tspan><tspan x="465" dy="20">no buffer JIT</tspan></text>
+      <path fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#php-jit-arrow)" class="php-jit-arrow" d="M465 566 V634 H403"/>
+      <text x="480" y="591" class="php-jit-small" text-anchor="start">Código nativo</text>
+      <text x="310" y="695" class="php-jit-small">Trechos compilados são reutilizados; os demais continuam na VM.</text>
+    </g>
+  </g>
+</svg>
